@@ -1,0 +1,23 @@
+ListNode* Solution::solve(ListNode* A) {
+    if(A==NULL || A->next==NULL){
+        return A;
+    }
+    int count=0;
+    ListNode*temp=A;
+    ListNode*temp1=A;
+    while(temp!=NULL){
+        if(temp->val==0){
+            count++;
+        }
+        temp=temp->next;
+    }
+    while(count--){
+        temp1->val=0;
+        temp1=temp1->next;
+    }
+    while(temp1!=NULL){
+        temp1->val=1;
+        temp1=temp1->next;
+    }
+    return A;
+}
