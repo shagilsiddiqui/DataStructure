@@ -1,0 +1,29 @@
+void deleteEvenNodes(Node* head)
+{
+   
+    while(head!=NULL && head->data%2==1){
+        Node*t=head;
+        head=head->next;
+        free(t);
+    }
+     Node* ptr = head;
+    Node* prev=head;
+ 
+    while (ptr != NULL) {
+      
+        // if (ptr->data % 2 == 1)
+        //     deleteNode(head,
+        //               ptr->data);
+        // ptr = ptr->next;
+        if(ptr->data%2==1){
+            prev->next=ptr->next;
+            node* temp=ptr;
+            free(temp);
+            ptr=ptr->next;
+            continue;
+        }
+        prev=ptr;
+        ptr=ptr->next;
+    }
+    return head;
+}
