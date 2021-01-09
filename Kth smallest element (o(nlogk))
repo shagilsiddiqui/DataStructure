@@ -1,0 +1,14 @@
+#include<queue>
+int kthSmallest(int arr[], int l, int r, int k) {
+    //code here
+    priority_queue<int>maxn;
+    int i=0;
+    for(i=0;i<=r;i++){
+        maxn.push(arr[i]);
+        if(maxn.size()>k){
+            maxn.pop();
+        }
+    }
+    return maxn.top();
+    
+}
