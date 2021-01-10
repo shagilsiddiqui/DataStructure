@@ -1,0 +1,25 @@
+int minJumps(int arr[], int n){
+    // Your code here
+    int i,j;
+    int dis[n];
+    std::fill_n(dis,n,INT_MAX);
+    dis[0]=0;
+    if(arr[0]==0){
+        return -1;
+    }
+    for(j=1;j<n;j++){
+        i=0;
+    while(j>i){
+        int s=arr[i]+i+1;
+        if(s>=j+1){
+        int k=min(dis[i]+1,dis[j]);
+            dis[j]=k;
+        }
+        i++;
+    }
+    }
+    if(dis[n-1]==INT_MAX){
+        return -1;
+    }
+    return dis[n-1];
+}
