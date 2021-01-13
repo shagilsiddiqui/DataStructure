@@ -1,0 +1,21 @@
+class Solution{
+public:
+
+	// Function to find maximum product subarray
+	long long maxProduct(int *arr, int n) {
+	    // code here
+	      long long int over_max=arr[0];
+	     long long int maxium=arr[0];
+	      long long int minimum=arr[0];
+	    for(int i=1;i<n;i++){
+	        
+	        long long int temp=maxium;
+	        
+	        maxium=max({(long long int)arr[i],(long long int)maxium*arr[i],minimum*arr[i]});
+	        minimum=min({(long long int)arr[i],(long long int)temp*arr[i],minimum*arr[i]});
+	        over_max=std::max(over_max,maxium);
+	    }
+	    return over_max;
+	    
+	}
+};
