@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int median(vector<int>arr,int n){
+        if (n%2==0){
+            return (arr[n/2]+arr[n/2-1])/2;
+        }
+        else{
+            return arr[n/2];
+        }
+    }
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int n=nums1.size();
+        if(n==0){
+            return -1;
+        }
+        if(n==1){
+            return (nums1[0]+nums1[1])/2
+        }
+        if(n==2){
+            return (max(nums1[0],nums2[0])+min(nums1[1],nums2[1]));
+        }
+        int m1=median(nums1,n);
+        int m2=median(nums2,n);
+        if(m1==m2){
+            return m1;
+        }
+        if (m1 < m2) 
+    { 
+        if (n % 2 == 0) 
+            return getMedian(nums1.begin()+ n/2 - 1, nums2); 
+        return getMedian(nums1.begin()+ n/2, ar2,); 
+    } 
+  
+    /* if m1 > m2 then median must exist in ar1[....m1] and 
+        ar2[m2...] */
+    if (n % 2 == 0) 
+        return findMedianSortedArrays(nums2.begin()+ n/2 - 1, nums1); 
+    return findMedianSortedArrays(nums2.begin()+ n/2, nums1); 
+    }
+};
