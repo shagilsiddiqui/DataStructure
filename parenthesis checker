@@ -1,0 +1,45 @@
+bool ispar(string x)
+{
+    // Your code here
+    int n=x.length();
+    if(n==0){
+        return true;
+    }
+    stack<char>s;
+    
+    for(int i=0;i<n;i++){
+        if(x[i]=='{'||x[i]=='['||x[i]=='('){
+            s.push(x[i]);
+        }
+        else if (s.empty()){
+            return false;
+        }
+        else if(x[i]=='}'){
+            char c=s.top();
+            if(c!='{'){
+                return false;
+            }
+            s.pop();
+        }
+        else if(x[i]==')'){
+            char c=s.top();
+            if(c!='('){
+                return false;
+            }
+            s.pop();
+        }
+        else if(x[i]==']'){
+            char c=s.top();
+            if(c!='['){
+                return false;
+            }
+            s.pop();
+        }
+    }
+    if(!s.empty()){
+        return false;
+    }
+    else{
+        return true;
+    }
+}
