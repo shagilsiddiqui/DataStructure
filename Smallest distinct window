@@ -1,0 +1,51 @@
+string findSubString(string str)
+{
+    // Your code goes here
+    set<char>s;
+    for(int i=0;i<str.length();i++){
+        s.insert(str[i]);
+    }
+    int n=s.size();
+    int count=1;
+    unordered_map<char,int>m;
+    m[str[0]]++;
+    int i=0;
+    int j=1;
+    int len=INT_MAX;
+    int index;
+    while(i<=j && j<str.length()){
+        if(count<n){
+            m[str[j]]++;
+            if(m[str[j]]==1){
+                count++;
+                
+            }
+            j++;
+        }
+        else{
+            if(len>j-i){
+                index=i;
+                len=j-i;
+            }
+            m[str[i]]--;
+            if(m[str[i]]<=0){
+                count--;
+            }
+            i++;
+            
+        }
+    }
+    while(count==n){
+        if(len>j-i){
+            len=j-i;
+            index=i;
+        }
+            m[str[i]]--;
+            if(m[str[i]]<=0){
+                count--;
+            }
+            i++;
+    }
+    //cout<<index<<" "<<j<<" "<<len<<endl;
+    return str.substr(index,len);
+}
