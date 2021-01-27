@@ -1,0 +1,41 @@
+#include <iostream>
+
+using namespace std;
+int ops(int n,string s){
+    int arr[26]={0};
+    int count=0;
+    int res=0;
+    for(int i=0;i<s.length();i++){
+        int index=s[i]-'A';
+        //cout<<index<<endl;
+        if(arr[index]==0){
+            arr[index]=1;
+            if(count<n){
+                count++;
+                arr[index]=2;
+            }
+            else{
+                res++;
+                // cout<<res<<endl;
+                // cout<<s[index]<<" "<<index<<endl;
+            }
+        }
+        else{
+            if(arr[index]==2){
+                count--;
+            }
+            arr[index]=0;
+        }
+        
+    }
+    return res;
+    
+}
+int main()
+{
+    // int n;
+    // cin>>n;
+    // string s;
+    // cin>>s;
+    cout<<ops(3,"GACCBDDBAGEE")<<endl;
+}
