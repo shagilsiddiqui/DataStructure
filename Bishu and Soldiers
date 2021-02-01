@@ -1,0 +1,37 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+			// Writing output to STDOUT
+			int n;
+			cin>>n;
+			vector<int>arr;
+			for(int i=0;i<n;i++){
+				int num;
+				cin>>num;
+				arr.push_back(num);
+			}
+			int q;
+			cin>>q;
+			sort(arr.begin(),arr.end());
+			int sum[n]={0};
+			 sum[0]=arr[0];
+			
+			for(int i=1;i<n;i++){
+				sum[i]=sum[i-1]+arr[i];
+				// cout<<sum[i]<<endl;
+			}
+			while(q--){
+				int k;
+				cin>>k;
+				//cout<<sum[0]<<endl;
+				 auto it=upper_bound(arr.begin(),arr.end(),k);
+				 cout<<(it-arr.begin())<<" ";
+				 cout<<sum[it-arr.begin()-1];
+				 cout<<endl;
+
+			}
+}
+
+
