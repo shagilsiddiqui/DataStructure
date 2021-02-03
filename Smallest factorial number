@@ -1,0 +1,32 @@
+class Solution
+{
+    public:
+        int findNum(int n)
+        {
+        //complete the function here
+        if(n==1){
+            return 5;
+        }
+        int l=5;
+        int high=5*n;
+        int c=INT_MAX;
+        while(l<=high){
+            int mid=(l+high)/2;
+            int n1=mid;
+            int sum=0;
+            int x=5;
+            while((n1/x)>0){
+                sum+=n1/x;
+                x=x*5;
+        }
+        if(sum>=n){
+            high=mid-1;
+            c=min(c,mid);
+        }
+        else{
+            l=mid+1;
+        }
+        }
+        return c;
+        }
+};
