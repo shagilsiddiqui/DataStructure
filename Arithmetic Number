@@ -1,0 +1,17 @@
+class Solution{
+public:
+    int inSequence(int A, int B, int C){
+        // code here
+        int x=B-A;
+        if(A==B){
+            return 1;
+        }
+        if(C==0){
+            return 0;
+        }
+        if(x%C==0 and (((B-A)<0 and C<0) or ((B-A>0) and C>0))){
+            return 1;
+        }
+        return 0;
+    }
+};
