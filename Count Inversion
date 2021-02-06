@@ -1,0 +1,63 @@
+long long int sot(long long arr[],int start,int mid,int end){
+    long int n1=mid-start+1;
+    long int n2=end-mid;
+    long long int arr1[n1];
+    long long int arr2[n2];
+    for(long long int i=0;i<n1;i++){
+        arr1[i]=arr[start+i];
+    }
+    for(long long int i=0;i<n2;i++){
+        arr2[i]=arr[mid+1+i];
+    }
+    long long int i=0;
+    long long int j=0;
+    long long int k=start;
+    long long int res=0;
+    while(i<n1 && j<n2){
+        if(arr1[i]>arr2[j]){
+            arr[k]=arr2[j];
+            //cout<<arr[k]<<endl;
+            j++;
+            res+=(n1-i);
+        }
+        else{
+            arr[k]=arr1[i];
+            i++;
+        }
+        k++;
+    }
+    while(i<n1){
+        arr[k]=arr1[i];
+        i++;
+        k++;
+    }
+    while(j<n2){
+        arr[k]=arr2[j];
+        j++;
+        k++;
+    }
+    return res;
+    
+}
+long long int merge(long long arr[],int start,int end){
+    
+    if(start>=end){
+        return 0;
+    }
+    long long int res=0;
+    int mid=start+((end-start)/2);
+    res+=merge(arr,start,mid);
+    res+=merge(arr,mid+1,end);
+    res+=sot(arr,start,mid,end);
+    return res;
+}
+long long int inversionCount(long long arr[], long long N)
+{
+    // Your Code Here
+    long long int res=merge(arr,0,N-1);
+    
+    // for(int i=0;i<N;i++){
+    //     cout<<arr[i]<<endl;
+    // }
+    return res;
+}
