@@ -1,0 +1,45 @@
+Node * reverse(Node* head){
+     if(head==NULL){
+            return NULL;
+        }
+        if(head->next==NULL){
+            return head;
+        }
+        Node* h=reverse(head->next);
+        Node* temp=head;
+        head->next->next=head;
+        head->next=NULL;
+        return h;
+    }
+Node* addOne(Node *head) 
+{
+    // Your Code here
+    // return head of list after adding one
+    Node*head1=reverse(head);
+    Node*head2=head1;
+    Node*prev=NULL;
+    head1->data=(head1->data)+1;
+    int c=0;
+    // if(head1->data>9){
+    //     c=1;
+    //     head1->data=0;
+    // }
+    while(head1!=NULL && (head1->data>9 || c>0)){
+        prev=head1;
+        if(c>0){
+            head1->data=(head1->data)+c;
+           // cout<<head1->data<<endl;
+        }
+        c=head1->data/10;
+        head1->data=head1->data%10;
+        
+        head1=head1->next;
+    }
+    if(c>0){
+        
+        prev->next=new Node(c);
+    }
+    return reverse(head2);
+    
+    
+}
