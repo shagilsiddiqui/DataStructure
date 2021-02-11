@@ -1,0 +1,74 @@
+Node * reverse(Node* head){
+     if(head==NULL){
+            return NULL;
+        }
+        if(head->next==NULL){
+            return head;
+        }
+        Node* h=reverse(head->next);
+        Node* temp=head;
+        head->next->next=head;
+        head->next=NULL;
+        return h;
+    }
+struct Node* addTwoLists(struct Node* first, struct Node* second)
+{
+    // code here
+    Node*head1=reverse(first);
+    Node*head2=reverse(second);
+    int data=(head1->data)+(head2->data);
+    Node*result=new Node(0);
+    Node*r=result;
+    int c=0;
+    while(head1!=NULL and head2!=NULL){
+        if(c>0){
+            head1->data=(head1->data)+c;
+            c=0;
+        }
+        int data=(head1->data)+(head2->data);
+        if(data>9){
+            c=data/10;
+            data=data%10;
+        }
+        Node*temp=new Node(data);
+        result->next=temp;
+        head1=head1->next;
+        head2=head2->next;
+        result=result->next;
+    }
+    while(head1!=NULL){
+        if(c>0){
+            head1->data=(head1->data)+c;
+            c=0;
+        }
+        if(head1->data>9){
+            c=(head1->data)/10;
+            head1->data=(head1->data)%10;
+        }
+        Node*temp=new Node(head1->data);
+        result->next=temp;
+        head1=head1->next;
+        result=result->next;
+    }
+    while(head2!=NULL){
+        if(c>0){
+            head2->data=(head2->data)+c;
+            c=0;
+        }
+        if(head2->data>9){
+            c=(head2->data)/10;
+            head2->data=(head2->data)%10;
+        }
+        Node*temp=new Node(head2->data);
+        result->next=temp;
+        head2=head2->next;
+        result=result->next;
+    }
+    if(c>0){
+        Node*temp=new Node(c);
+        result->next=temp;
+        result=result->next;
+    }
+    return reverse(r->next);
+    
+}
