@@ -1,0 +1,34 @@
+Node*reverse(Node*head){
+    if(head==NULL || head->next==NULL){
+        return head;
+    }
+      Node* h=reverse(head->next);
+        Node* temp=head;
+        head->next->next=head;
+        head->next=NULL;
+        return h;
+}
+bool isPalindrome(Node *head)
+{
+   // Your code here
+   //Node*t=reverse(head);
+    Node*slow=head;
+    Node*fast=head;
+    while(fast and fast->next){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    fast=head;
+    slow=reverse(slow);
+    //cout<<slow->data<<endl;
+    while(slow!=NULL){
+        if(fast->data!=slow->data){
+            return 0;
+        }
+        fast=fast->next;
+        slow=slow->next;
+    }
+    return true;
+    
+    
+}
