@@ -1,0 +1,36 @@
+int countAllTripletSum(Node *head, int x)
+{
+    //    Write your code here
+    if(head==NULL || head->next==NULL || head->next->next==NULL){
+        return 0;
+    }
+    Node*temp=head;
+    int count=0;
+    while(temp->next->next!=NULL){
+    Node*temp1=temp->next;
+    Node*temp2=temp;
+    while(temp2->next!=NULL){
+        temp2=temp2->next;
+    }
+        int left=x-(temp->data);
+        //cout<<temp->data<<" "<<temp1->data<<" "<<temp2->data<<endl;
+    while(temp1!=NULL && temp2!=NULL && temp1!=temp2 && temp2->next!=temp1){
+        if((temp1->data+temp2->data)==left){
+            count++;
+            temp1=temp1->next;
+            temp2=temp2->prev;
+        }
+        else{
+            if((temp1->data+temp2->data)>left){
+                temp2=temp2->prev;
+            }
+            else{
+                temp1=temp1->next;
+            }
+        }
+    }
+        temp=temp->next;
+    }
+    return count;
+
+}
