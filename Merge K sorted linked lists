@@ -1,0 +1,36 @@
+ class myComparator
+{
+public:
+    int operator()(Node *p1,Node *p2)
+    {
+        return p1->data>p2->data;
+    }
+};
+Node * mergeKLists(Node *arr[], int N)
+{
+       // Your code here
+       priority_queue<Node*,vector<Node*>,myComparator>pq;
+       for(int i=0;i<N;i++){
+           pq.push(arr[i]);
+       }
+       Node*temp=NULL;
+       Node*res=NULL;
+       while(!pq.empty()){
+           Node*t=pq.top();
+           pq.pop();
+           if(temp==NULL){
+               temp=t;
+               res=t;
+           }
+           else{
+               temp->next=t;
+               temp=temp->next;
+           }
+           t=t->next;
+           if(t!=NULL){
+               pq.push(t);
+           }
+       }
+       return res;
+       
+}
