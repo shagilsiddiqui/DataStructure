@@ -1,0 +1,46 @@
+class Solution{
+public:
+    Node* divide(int N, Node *head){
+        // code here
+        Node*odd=NULL;
+        Node*even=NULL;
+        Node*temp=head;
+        Node*res=NULL;
+        Node*res1=NULL;
+        while(temp!=NULL){
+            if((temp->data)%2==0){
+                if(even==NULL){
+                    even=temp;
+                    res=even;
+                    //cout<<res->data<<endl;
+                }
+                else{
+                    even->next=temp;
+                    even=even->next;
+                }
+            }
+            else{
+                if(odd==NULL){
+                    odd=temp;
+                    res1=odd;
+                }
+                else{
+                    odd->next=temp;
+                    odd=odd->next;
+                }
+            }
+            temp=temp->next;
+        }
+        if(res!=NULL){
+            if(odd && even){
+            odd->next=NULL;
+            even->next=res1;}
+            return res;
+        }
+        else{
+            if(odd)
+            odd->next=NULL;
+            return res1;
+        }
+    }
+};
