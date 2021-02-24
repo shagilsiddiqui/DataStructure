@@ -1,0 +1,12 @@
+class Solution{
+    public:
+    int height(struct Node* node){
+        // code here 
+        if(node==NULL){
+            return 0;
+        }
+        int l=height(node->left);
+        int x=height(node->right);
+        return max(l,x)+1;
+    }
+};
