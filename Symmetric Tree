@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool checksym(TreeNode*right,TreeNode*left){
+        if(right==NULL and left==NULL){
+            return true;
+        }
+        if(right==NULL || left==NULL || right->val!=left->val){
+            return false;
+        }
+        return checksym(right->right,left->left) && checksym(right->left,left->right);
+    }
+    bool isSymmetric(TreeNode* root) {
+        return checksym(root->right,root->left);
+    }
+};
