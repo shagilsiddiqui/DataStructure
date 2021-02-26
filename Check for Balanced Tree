@@ -1,0 +1,21 @@
+bool f=true;
+int height(Node*root){
+    if(root==NULL){
+        return 0;
+    }
+    int x=height(root->left);
+    int y=height(root->right);
+    if(abs(x-y)>1)
+    f=false;
+    return max(x,y)+1;
+}
+bool isBalanced(Node *root)
+{
+    //  Your Code here
+    if(root==NULL){
+        return true;
+    }
+    f=1;
+    int z=height(root);
+    return f;
+}
