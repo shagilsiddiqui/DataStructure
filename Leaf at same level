@@ -1,0 +1,38 @@
+int f=0;
+void sol(Node*root,int h,int &ma){
+    if(root==NULL){
+        return ;
+    }
+    if(f==0){
+        return;
+    }
+    if(root->right==NULL and root->left==NULL){
+        if(ma==-1){
+            ma=h;
+        }
+        else{
+            if(ma!=h){
+                f=0;
+                return;
+            }
+        }
+    }
+    sol(root->left,h+1,ma);
+    sol(root->right,h+1,ma);
+    return;
+    
+    
+}
+bool check(Node *root)
+{
+    //Your code here
+    if(root==NULL){
+        return true;
+    }
+    int ma=-1;
+    int h=0;
+    f=1;
+    sol(root,h,ma);
+    return f;
+    
+}
