@@ -1,0 +1,27 @@
+int f=1;
+int sum(Node*root){
+    if(root==NULL){
+        return 0;
+    }
+    if(root->left==NULL && root->right==NULL){
+        return root->data;
+    }
+    int x=sum(root->left);
+    int y=sum(root->right);
+    if(root->data !=(x+y)){
+        f=0;
+    }
+    return x+y+root->data;
+}
+bool isSumTree(Node* root)
+{
+     // Your code here
+     if(root==NULL){
+         return true;
+     }
+     f=1;
+     int z=sum(root);
+     return f;
+     
+     
+}
