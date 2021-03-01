@@ -1,0 +1,35 @@
+class Solution
+{
+    public:  
+    vector<int>v;
+    void inorder(Node* root){
+    if(root==NULL){
+        return;
+    }
+    inorder(root->left);
+    v.push_back(root->data);
+    inorder(root->right);
+}
+    Node * bToDLL(Node *root)
+    {
+        // your code here
+        inorder(root);
+        Node*head=new Node;
+        head->data=v[0];
+        head->right=NULL;
+        head->left=NULL;
+        Node*prev=head;
+        //prev=head;
+        for(int i=1;i<v.size();i++){
+            Node*temp=new Node;
+            temp->right=NULL;
+            temp->left=NULL;
+            temp->data=v[i];
+            prev->right=temp;
+            temp->left=prev;
+            prev=temp;
+        }
+        return head;
+        
+    }
+};
