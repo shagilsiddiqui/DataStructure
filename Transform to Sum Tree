@@ -1,0 +1,20 @@
+int util(Node*root){
+    if((root)==NULL){
+        return 0;
+    }
+    int d=root->data;
+    int x=util(root->left);
+    int y=util(root->right);
+    //cout<<x<<y<<endl;
+    root->data=x+y;
+    return d+root->data;
+}
+void toSumTree(Node *node)
+{
+    // Your code here
+    if(node==NULL){
+        return;
+    }
+    util(node);
+    
+}
