@@ -1,0 +1,16 @@
+int ma=0;
+int dia(Node* root){
+     if(root==NULL){
+        return 0;
+    }
+    int l=dia(root->left);
+    int r=dia(root->right);
+    ma=max(ma,1+l+r);
+    return 1+max(l,r);
+}
+int diameter(Node* root) {
+    // Your code here
+    ma=INT_MIN;
+   int z=dia(root);
+   return ma;
+}
