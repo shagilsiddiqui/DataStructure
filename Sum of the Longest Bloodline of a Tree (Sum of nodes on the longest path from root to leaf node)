@@ -1,0 +1,28 @@
+void sm(Node*root,int sum,int h,int &max_h,int & ma){
+    if(root==NULL){
+	    return ;
+	}
+	sum+=root->data;
+	h=h+1;
+	if(root->right==NULL and root->left==NULL){
+	    if(h>max_h){
+	        ma=sum;
+	        max_h=h;
+	    }
+	    else if(h==max_h and sum>ma){
+	        ma=sum; 
+	    }
+	}
+	sm(root->left,sum,h,max_h,ma);
+	sm(root->right,sum,h,max_h,ma);
+	
+}
+int sumOfLongRootToLeafPath(Node* root)
+{
+	// Code heres
+	int ma=0;
+int max_h=0;
+	sm(root,0,0,max_h,ma);
+	return ma;
+	
+}
