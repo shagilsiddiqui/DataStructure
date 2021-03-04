@@ -1,0 +1,45 @@
+ Node*LCA(Node*root,int a,int b){
+       if(root==NULL){
+           return root;
+       }
+       if(root->data ==a || root->data==b){
+           return root;
+       }
+       Node*l=LCA(root->left,a,b);
+       Node*r=LCA(root->right,a,b);
+       if(l and r){
+           return root;
+       }
+       if(l){
+           return l;
+       }
+       if(r){
+           return r;
+       }
+       return NULL;
+       
+   }
+   int solve(Node*root,int x){
+       if(root==NULL){
+           return 0;
+       }
+       if(root->data==x){
+           return 1;}
+           int l=solve(root->left,x);
+           int r=solve(root->right,x);
+           if(l==0 and r==0 ){
+               return 0;
+           }
+           return l+r+1;
+   }
+int findDist(Node* root, int a, int b) {
+    // Your code here
+    Node*lc=LCA(root,a,b);
+    //cout<<lc->data<<endl;
+    int l=solve(lc,a);
+    int r=solve(lc,b);
+    // cout<<l<<endl;
+    // cout<<r<<endl;
+    return l+r-2;
+    
+}
