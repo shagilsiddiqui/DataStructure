@@ -1,0 +1,32 @@
+string check(Node*root,unordered_map<string,int> &m,string s,vector<int>&v){
+    if(root==NULL){
+        return "";
+    }
+    string a=check(root->left,m,to_string(root->data),v);
+    string b=check(root->right,m,to_string(root->data),v);
+    //if(root->right!=NULL and root->left!=NULL)
+    if(m[a+to_string(root->data)+b]==1){
+        v.push_back(root->data);
+    }
+    m[a+to_string(root->data)+b]++;
+    return a+to_string(root->data)+b; 
+}
+void printAllDups(Node* root)
+{
+    // Code here
+    unordered_map<string,int>m;
+    vector<int>v;
+     string s=check(root,m,"",v);
+    //  for(auto x:m){
+    //      if(x.second>=2)
+    //      cout<<x.first<<endl;
+    //  }
+    sort(v.begin(),v.end());
+    if(v.empty()){
+        cout<<-1;
+    }
+    else{
+    for(auto i:v){
+        cout<<i<<" ";
+    }}
+}
