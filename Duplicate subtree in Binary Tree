@@ -1,0 +1,21 @@
+string check(Node*root,unordered_map<string,int> &m,string s){
+    if(root==NULL){
+        return "";
+    }
+    string a=check(root->left,m,to_string(root->data));
+    string b=check(root->right,m,to_string(root->data));
+    if(root->right!=NULL and root->left!=NULL)
+    m[a+to_string(root->data)+b]++;
+    return a+to_string(root->data)+b; 
+}
+bool dupSub(Node *root)
+{
+     //your code here
+     unordered_map<string,int>m;
+     string s=check(root,m,"");
+     for(auto x:m){
+         if(x.second>=2)
+         return true;
+     }
+     return false;
+}
