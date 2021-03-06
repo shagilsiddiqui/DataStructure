@@ -1,0 +1,12 @@
+int minValue(Node* root)
+{
+    // Code here
+    if(root->left==NULL){
+        return root->data;
+    }
+    if(root->left==NULL and root->right==NULL){
+        return root->data;
+    }
+    int z=minValue(root->left);
+    return z;
+}
