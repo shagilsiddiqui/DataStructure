@@ -1,0 +1,48 @@
+class Solution {
+    TreeNode* findMax(TreeNode* root){
+        if(root==NULL){
+            return root;
+        }
+        if(root->right==NULL){
+            return root;
+        }
+        TreeNode* t=findMax(root->right);
+        return t;
+    }
+public:
+    TreeNode* deleteNode(TreeNode* root, int key) {
+        if(root==NULL){
+            return root;
+        }
+        else if(root->val>key){
+            root->left=deleteNode(root->left,key);
+        }
+        else if(root->val<key){
+            root->right=deleteNode(root->right,key);
+        }
+        else{
+        if(root->left==NULL and root->right==NULL){
+            return NULL;
+        }
+            if(root->right==NULL){
+                TreeNode* temp=root;
+                root=temp->left;
+                delete temp;
+                
+                //return root;
+            }
+            else if(root->left==NULL){
+                TreeNode* temp=root;
+                root=temp->right;
+                delete temp;
+            }
+            else{
+                TreeNode* t=findMax(root->left);
+                root->val=t->val;
+                root->left=deleteNode(root->left,t->val);
+                //return root;
+            }
+        }
+        return root;
+    }
+};
