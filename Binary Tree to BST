@@ -1,0 +1,29 @@
+void inorder(Node* root,vector<int> &arr){
+    if(root==NULL){
+        return;
+    }
+    inorder(root->left,arr);
+    arr.push_back(root->data);
+    inorder(root->right,arr);
+}
+int i=0;
+void inorder1(Node* root,vector<int>&arr){
+    if(root==NULL){
+        return;
+    }
+    inorder1(root->left,arr);
+    root->data=arr[i];
+    i++;
+    inorder1(root->right,arr);
+    
+}
+Node *binaryTreeToBST (Node *root)
+{
+    //Your code goes here
+    vector<int>arr;
+    inorder(root,arr);
+    sort(arr.begin(),arr.end());
+    i=0;
+    inorder1(root,arr);
+    return root;
+}
