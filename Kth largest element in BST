@@ -1,0 +1,27 @@
+int x;
+
+class Solution
+{
+    public:
+    void inorder(Node*root,int k,int &cnt){
+    if(root==NULL){
+        return;
+    }
+    inorder(root->right,k,cnt);
+    cnt++;
+     if(k==cnt){
+        x=root->data;
+        return;
+    }
+    
+    inorder(root->left,k,cnt);
+}
+    int kthLargest(Node *root, int K)
+    {
+        //Your code here
+        x=0;
+        int cnt=0;
+        inorder(root,K,cnt);
+        return x;
+    }
+};
