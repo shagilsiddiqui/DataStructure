@@ -1,0 +1,22 @@
+int x;
+
+  void inorder(Node*root,int& k){
+    if(root==NULL){
+        return;
+    }
+    inorder(root->left,k);
+    k--;
+     if(k==0){
+        x=root->data;
+        return;
+    }
+    
+    inorder(root->right,k);
+}
+int KthSmallestElement(Node *root, int K)
+{
+    //add code here.
+     x=-1;
+        inorder(root,K);
+        return x;
+}
