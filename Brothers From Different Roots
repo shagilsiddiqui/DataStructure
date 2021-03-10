@@ -1,0 +1,49 @@
+void inorder(Node* root,vector<int>&v){
+    if(root==NULL){
+        return;
+    }
+    inorder(root->left,v);
+    v.push_back(root->data);
+    inorder(root->right,v);
+}
+// void preorder(Node* root,vector<int>&v1){
+//     if(root==NULL){
+//         return ;
+//     }
+//     preorder(root->right,v1);
+//     v1.push_back(root->data);
+//     preorder(root->left,v1);
+// }
+int countPairs(Node* root1, Node* root2, int x)
+{
+    // Code here
+    vector<int>v;
+    vector<int>v1;
+    inorder(root1,v);
+    inorder(root2,v1);
+    // for(auto i:v){
+    //     cout<<i<<endl;
+    // }
+    // for(auto i:v1){
+    //     cout<<i<<endl;
+    // }
+    int i=0;
+    int j=v1.size()-1;
+    int count=0;
+    while(i<v.size() and j>=0){
+        int a=v[i];
+        int b=v1[j];
+        if(a+b>x){
+            j--;
+        }
+        else if(a+b<x){
+            i++;
+        }
+        else{
+            j--;
+            i++;
+            count++;
+        }
+    }
+    return count;
+}
