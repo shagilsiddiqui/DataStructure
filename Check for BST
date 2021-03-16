@@ -1,0 +1,30 @@
+class Solution
+{
+    public:
+    void isBT(Node* root,int mn,int mx,int &f){
+        if(root==NULL){
+            return;
+        }
+        if(f==0){
+            return;
+        }
+        if(root->data <mn || root->data>mx){
+            f=0;
+            return;
+        }
+        isBT(root->left,mn,(root->data)-1,f);
+        isBT(root->right,(root->data)+1,mx,f);
+    }
+    bool isBST(Node* root) 
+    {
+        // Your code here
+        if(root==NULL){
+            return true;
+        }
+        int mn=INT_MIN;
+        int mx=INT_MAX;
+        int f=1;
+        isBT(root,mn,mx,f);
+        return f;
+    }
+};
