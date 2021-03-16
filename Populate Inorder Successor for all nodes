@@ -1,0 +1,23 @@
+node*pre=NULL;
+void inorder(node* root){
+    if(root==NULL){
+        return;
+    }
+    inorder(root->left);
+    if(pre!=NULL){
+        pre->next=root;
+        pre=pre->next;
+    }
+    else{
+        pre=root;
+    }
+    inorder(root->right);
+}
+void populateNext(struct node* p)
+{
+
+// Your code goes here
+pre==NULL;
+inorder(p);
+p=pre;
+}
