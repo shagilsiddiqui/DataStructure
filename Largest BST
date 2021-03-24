@@ -1,0 +1,26 @@
+struct bst{
+    int isbst;
+    int min;
+    int max;
+    int size;
+};
+bst check(Node*root){
+    if(root==NULL){
+        bst b={1,INT_MAX,INT_MIN,0};
+        return b;
+    }
+    bst l=check(root->left);
+    bst r=check(root->right);
+    if(l.isbst && r.isbst && l.max<root->data && r.min>root->data){
+        bst b={1,min(l.min,root->data),max(root->data,r.max),1+l.size+r.size};
+        return b;
+    }
+    bst b={0,-1,-1,max(l.size,r.size)};
+    return b;
+}
+int largestBst(Node *root)
+{
+	//Your code here
+	bst b=check(root);
+	return b.size;
+}
