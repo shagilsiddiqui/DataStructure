@@ -1,0 +1,20 @@
+Node*make(int start,int end,int pre[]){
+    if(start>end){
+        return NULL;
+    }
+    int s=start+1;
+    while(s<=end and pre[s]<pre[start]){
+        s++;
+    }
+    s--;
+    Node*head=newNode(pre[start]);
+    head->left=make(start+1,s,pre);
+    head->right=make(s+1,end,pre);
+    return head;
+    
+    
+}
+Node* constructTree(int pre[], int size) {
+    //code here
+    return make(0,size-1,pre);
+}
