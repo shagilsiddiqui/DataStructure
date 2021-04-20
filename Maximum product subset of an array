@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int maxProductSubset(int a[],int n){
+    int zero_count=0;
+    int negtive_count=0;
+    int prod=1;
+    int mx_negative=INT_MIN;
+    for(int i=0;i<n;i++){
+        if(a[i]==0){
+            zero_count++;
+            continue;
+        }
+        if(a[i]<0){
+            negtive_count++;
+            mx_negative=max(a[i],mx_negative);
+        }
+        prod=prod*a[i];
+    }
+    if(zero_count==n){
+        return 0;
+    }
+    if(negtive_count==1 and zero_count>0 and (negtive_count+zero_count==n) ){
+        return 0;
+    }
+    if(negtive_count%2!=0){
+        prod=prod/mx_negative;
+    }
+    return prod;
+}
+int main()
+{
+    int a[] = {  0, 0, -1, 0, -1,-6  };
+    int n = sizeof(a) / sizeof(a[0]);
+    cout << maxProductSubset(a, n);
+    return 0;
+}
